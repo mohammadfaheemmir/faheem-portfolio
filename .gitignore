@@ -24,4 +24,11 @@ dist-ssr
 *.sw?
 
 
+<<<<<<< HEAD
 
+=======
+# Environment variables
+.env
+.env.*
+!.env.example
+>>>>>>> 4ad786e (Update gitignore for environment files)
