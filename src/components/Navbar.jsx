@@ -59,8 +59,8 @@ function Navbar() {
 
                 <div
                     className={`relative border rounded-full pl-5 pr-2 sm:pl-6 py-2 flex items-center justify-between transition-all duration-300 ${scrolled || menuOpen
-                        ? 'bg-[#0b0b0d]/95 border-white/10 shadow-xl shadow-black/40'
-                        : 'bg-[#0b0b0d]/70 border-white/[0.06]'
+                        ? 'bg-[#0b1222]/95 border-white/10 shadow-xl shadow-black/40'
+                        : 'bg-[#0b1222]/70 border-white/[0.06]'
                         }`}
                 >
 
@@ -71,7 +71,7 @@ function Navbar() {
                         className="text-lg font-bold tracking-tight text-white"
                         aria-label="Faheem — back to top"
                     >
-                        Faheem<span className="text-emerald-400">.</span>
+                        Faheem<span className="text-blue-400">.</span>
                     </a>
 
                     {/* Desktop links */}
@@ -99,7 +99,7 @@ function Navbar() {
                     {/* Desktop CTA */}
                     <a
                         href="#contact"
-                        className="hidden lg:inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black hover:bg-emerald-300 transition-colors"
+                        className="hidden lg:inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-400 transition-colors"
                     >
                         Let's talk
                     </a>
@@ -135,7 +135,7 @@ function Navbar() {
                 {/* Mobile menu */}
                 <div
                     id="mobile-menu"
-                    className={`lg:hidden mt-2 overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b0d] shadow-2xl shadow-black/50 transition-all duration-300 ease-out ${menuOpen
+                    className={`lg:hidden mt-2 overflow-hidden rounded-3xl border border-white/10 bg-[#0b1222] shadow-2xl shadow-black/50 transition-all duration-300 ease-out ${menuOpen
                         ? 'max-h-[620px] opacity-100 translate-y-0'
                         : 'max-h-0 opacity-0 -translate-y-2 pointer-events-none border-transparent'
                         }`}
@@ -157,7 +157,7 @@ function Navbar() {
                                     >
                                         {link.name}
                                         {isActive && (
-                                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                            <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                                         )}
                                     </a>
                                 </li>
@@ -170,7 +170,7 @@ function Navbar() {
                             href="#contact"
                             onClick={closeMenu}
                             tabIndex={menuOpen ? 0 : -1}
-                            className="flex items-center justify-center w-full rounded-full bg-emerald-400 py-3.5 text-sm font-semibold text-black hover:bg-emerald-300 transition-colors"
+                            className="flex items-center justify-center w-full rounded-full bg-blue-500 py-3.5 text-sm font-semibold text-white hover:bg-blue-400 transition-colors"
                         >
                             Let's talk
                         </a>

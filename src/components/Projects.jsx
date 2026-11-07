@@ -74,7 +74,7 @@ const projects = [
         ],
         githubUrl: 'https://github.com/mohammadfaheemmir/faheem-portfolio',
         caption: 'You are here',
-        accent: '52,211,153',
+        accent: '96,165,250',
         mark: SiJavascript,
     },
 ]
@@ -149,7 +149,7 @@ function Projects() {
                         <ProjectPreview project={project} />
 
                         <div className="flex flex-1 flex-col px-2 pt-5 pb-2 sm:px-3">
-                            <p className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-300/80">
+                            <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80">
                                 {project.type}
                             </p>
 
@@ -179,7 +179,7 @@ function Projects() {
                                         href={project.liveUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black hover:bg-emerald-300 transition-colors"
+                                        className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-400 transition-colors"
                                     >
                                         Live demo
                                         <FaExternalLinkAlt size={11} aria-hidden="true" />
@@ -217,7 +217,7 @@ function Projects() {
                     href="https://github.com/mohammadfaheemmir"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-emerald-400"
+                    className="font-medium text-white underline decoration-white/30 underline-offset-4 hover:decoration-blue-400"
                 >
                     GitHub
                 </a>

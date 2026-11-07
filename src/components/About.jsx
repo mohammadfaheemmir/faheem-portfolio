@@ -54,7 +54,7 @@ function About() {
 
                 <dl className="reveal lg:col-span-5 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10">
                     {stats.map((stat) => (
-                        <div key={stat.label} className="bg-[#0a0a0c] p-5 sm:p-6 flex flex-col-reverse">
+                        <div key={stat.label} className="bg-[#0a1120] p-5 sm:p-6 flex flex-col-reverse">
                             <dt className="mt-1.5 text-sm text-slate-400">{stat.label}</dt>
                             <dd className="text-3xl sm:text-4xl font-semibold tracking-tight">
                                 {stat.value}
@@ -70,7 +70,7 @@ function About() {
                         key={title}
                         className="reveal rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-7 hover:border-white/20 transition-colors"
                     >
-                        <div className="w-10 h-10 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.07] flex items-center justify-center text-emerald-300">
+                        <div className="w-10 h-10 rounded-xl border border-blue-400/20 bg-blue-400/[0.07] flex items-center justify-center text-sky-300">
                             <Icon size={16} />
                         </div>
                         <h3 className="mt-5 text-lg font-semibold">{title}</h3>

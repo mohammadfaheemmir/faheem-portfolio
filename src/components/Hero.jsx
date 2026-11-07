@@ -30,7 +30,7 @@ function Hero() {
             {/* Ambient light (gradients, not blur filters — cheap on mobile) */}
             <div
                 className="absolute -top-72 -left-72 w-[800px] h-[800px] pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 60%)' }}
+                style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.12) 0%, transparent 60%)' }}
             />
             <div
                 className="absolute top-1/4 right-[-350px] w-[800px] h-[800px] pointer-events-none"
@@ -43,12 +43,12 @@ function Hero() {
                     {/* ============ Text ============ */}
                     <div className="lg:col-span-7">
 
-                        <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3.5 py-1.5">
+                        <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-3.5 py-1.5">
                             <span className="relative flex h-2 w-2">
                                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70 animate-ping" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                             </span>
-                            <span className="text-xs sm:text-sm font-medium text-emerald-200">
+                            <span className="text-xs sm:text-sm font-medium text-sky-200">
                                 Open to web development roles
                             </span>
                         </div>
@@ -74,7 +74,7 @@ function Hero() {
                         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
                             <a
                                 href="#projects"
-                                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-400 px-6 py-3.5 font-semibold text-black hover:bg-emerald-300 transition-colors"
+                                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-blue-500 px-6 py-3.5 font-semibold text-white hover:bg-blue-400 transition-colors"
                             >
                                 View my work
                                 <FaArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
@@ -126,11 +126,11 @@ function Hero() {
 
                             <div
                                 className="absolute -inset-16 pointer-events-none"
-                                style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 65%)' }}
+                                style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.12) 0%, transparent 65%)' }}
                             />
 
-                            <div className="relative rounded-[1.75rem] p-px bg-gradient-to-br from-white/25 via-white/5 to-emerald-400/30">
-                                <div className="relative overflow-hidden rounded-[1.75rem] bg-[#0a0a0a]">
+                            <div className="relative rounded-[1.75rem] p-px bg-gradient-to-br from-white/25 via-white/5 to-blue-400/30">
+                                <div className="relative overflow-hidden rounded-[1.75rem] bg-[#0a1120]">
                                     <img
                                         src="/images/faheem-960.webp"
                                         srcSet="/images/faheem-480.webp 480w, /images/faheem-960.webp 960w"

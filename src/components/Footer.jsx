@@ -14,7 +14,7 @@ function Footer() {
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
                     <div>
                         <a href="#home" className="text-xl font-bold tracking-tight">
-                            Faheem<span className="text-emerald-400">.</span>
+                            Faheem<span className="text-blue-400">.</span>
                         </a>
                         <p className="mt-2 text-sm text-slate-400">
                             Full-stack web developer · Building for the web.

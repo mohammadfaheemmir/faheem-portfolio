@@ -112,7 +112,7 @@ function Skills() {
                                     {Icon ? (
                                         <Icon size={16} color={color} aria-hidden="true" />
                                     ) : (
-                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
+                                        <span className="h-1.5 w-1.5 rounded-full bg-blue-400" aria-hidden="true" />
                                     )}
                                     {name}
                                 </li>

@@ -28,15 +28,15 @@ function Contact() {
                     className="absolute inset-0 pointer-events-none"
                     style={{
                         background:
-                            'radial-gradient(60% 80% at 100% 0%, rgba(16,185,129,0.12) 0%, transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(59,130,246,0.10) 0%, transparent 60%)',
+                            'radial-gradient(60% 80% at 100% 0%, rgba(56,189,248,0.12) 0%, transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(59,130,246,0.10) 0%, transparent 60%)',
                     }}
                 />
 
                 <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-end">
                     <div className="lg:col-span-7">
                         <div className="flex items-center gap-3 mb-5">
-                            <span className="h-px w-8 bg-emerald-400" />
-                            <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-300/80">
+                            <span className="h-px w-8 bg-blue-400" />
+                            <p className="text-xs font-medium uppercase tracking-[0.25em] text-sky-300/80">
                                 Contact
                             </p>
                         </div>
@@ -54,7 +54,7 @@ function Contact() {
                         <div className="mt-8 flex flex-col sm:flex-row gap-3">
                             <a
                                 href={`mailto:${contact.email}`}
-                                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-400 px-6 py-3.5 font-semibold text-black hover:bg-emerald-300 transition-colors"
+                                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-blue-500 px-6 py-3.5 font-semibold text-white hover:bg-blue-400 transition-colors"
                             >
                                 <FaEnvelope size={14} aria-hidden="true" />
                                 Email me
@@ -67,7 +67,7 @@ function Contact() {
                                 className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 font-medium text-slate-200 hover:bg-white/[0.08] transition-colors"
                             >
                                 {copied ? (
-                                    <FaCheck size={13} className="text-emerald-300" aria-hidden="true" />
+                                    <FaCheck size={13} className="text-sky-300" aria-hidden="true" />
                                 ) : (
                                     <FaRegCopy size={13} aria-hidden="true" />
                                 )}
@@ -101,7 +101,7 @@ function Contact() {
                             </a>
                         ))}
 
-                        <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/15 bg-emerald-400/[0.05] p-4">
+                        <div className="flex items-center gap-3 rounded-2xl border border-blue-400/15 bg-blue-400/[0.05] p-4">
                             <span className="relative flex h-2.5 w-2.5 shrink-0">
                                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
                                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />

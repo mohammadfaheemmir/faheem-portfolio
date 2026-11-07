@@ -97,7 +97,7 @@ function Certifications() {
                                     href={cert.verification}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-5 inline-flex items-center gap-2 self-start text-sm font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
+                                    className="mt-5 inline-flex items-center gap-2 self-start text-sm font-medium text-sky-300 hover:text-sky-200 transition-colors"
                                 >
                                     Verify credential
                                     <FaExternalLinkAlt size={10} aria-hidden="true" />

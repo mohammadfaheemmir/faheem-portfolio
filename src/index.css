@@ -12,7 +12,7 @@
   font-feature-settings: "cv11", "ss01";
 
   color: #f8fafc;
-  background: #050505;
+  background: #060b16;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,7 +22,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #050505;
+  background: #060b16;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
 }
@@ -36,9 +36,9 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 15% 0%, rgba(16, 185, 129, 0.07), transparent 35%),
+    radial-gradient(circle at 15% 0%, rgba(56, 189, 248, 0.07), transparent 35%),
     radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.08), transparent 35%),
-    #050505;
+    #060b16;
   color: #f8fafc;
   overflow-x: hidden;
 }
@@ -48,8 +48,8 @@ body {
 }
 
 ::selection {
-  background: #10b981;
-  color: #04120c;
+  background: #3b82f6;
+  color: #ffffff;
 }
 
 a {
@@ -69,7 +69,7 @@ button {
 
 /* Visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid #34d399;
+  outline: 2px solid #60a5fa;
   outline-offset: 3px;
   border-radius: 8px;
 }
@@ -90,7 +90,7 @@ button {
 
 /* Padding keeps descenders (g, y, p) from being clipped by background-clip: text */
 .gradient-text {
-  background: linear-gradient(90deg, #ffffff 0%, #a7f3d0 50%, #67e8f9 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #bfdbfe 50%, #7dd3fc 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

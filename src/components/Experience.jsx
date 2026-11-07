@@ -50,7 +50,7 @@ function Experience() {
 
                     return (
                         <li key={item.title} className="reveal relative pl-9 sm:pl-12">
-                            <span className="absolute -left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#0b0b0d] text-emerald-300">
+                            <span className="absolute -left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#0b1222] text-sky-300">
                                 <Icon size={14} aria-hidden="true" />
                             </span>
 
@@ -75,7 +75,7 @@ function Experience() {
                                     <ul className="mt-4 space-y-2.5 max-w-3xl">
                                         {item.points.map((point) => (
                                             <li key={point} className="flex gap-3 text-[15px] leading-relaxed text-slate-300">
-                                                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden="true" />
+                                                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" aria-hidden="true" />
                                                 {point}
                                             </li>
                                         ))}
