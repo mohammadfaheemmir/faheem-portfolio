@@ -11,8 +11,8 @@ function Navbar() {
         { name: 'Home', href: '#home' },
         { name: 'About', href: '#about' },
         { name: 'Skills', href: '#skills' },
-        { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
+        { name: 'Experience', href: '#experience' },
         { name: 'Certifications', href: '#certifications' },
         { name: 'Contact', href: '#contact' },
     ]
@@ -25,7 +25,7 @@ function Navbar() {
                 {/* =========================
             MAIN NAVBAR
         ========================== */}
-                <div className="relative bg-[#0b0b0d]/95 backdrop-blur-xl border border-white/10 rounded-full px-4 sm:px-5 md:px-7 py-3 flex items-center justify-between shadow-2xl shadow-black/30">
+                <div className="relative bg-[#0b0b0d]/95 border border-white/10 rounded-full px-4 sm:px-5 md:px-7 py-3 flex items-center justify-between shadow-2xl shadow-black/30">
 
                     {/* Logo */}
                     <a
@@ -117,7 +117,7 @@ function Navbar() {
         ========================== */}
                 <div
                     onClick={closeMenu}
-                    className={`fixed inset-0 top-[88px] bg-black/50 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden ${menuOpen
+                    className={`fixed inset-0 top-[88px] bg-black/60 transition-opacity duration-300 lg:hidden ${menuOpen
                             ? 'opacity-100 pointer-events-auto'
                             : 'opacity-0 pointer-events-none'
                         }`}
@@ -127,7 +127,7 @@ function Navbar() {
             MOBILE MENU
         ========================== */}
                 <div
-                    className={`relative lg:hidden mt-3 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0d]/98 backdrop-blur-2xl shadow-2xl shadow-black/50 transition-all duration-300 ease-out ${menuOpen
+                    className={`relative lg:hidden mt-3 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0d] shadow-2xl shadow-black/50 transition-all duration-300 ease-out ${menuOpen
                             ? 'max-h-[700px] opacity-100 translate-y-0'
                             : 'max-h-0 opacity-0 -translate-y-3 pointer-events-none'
                         }`}

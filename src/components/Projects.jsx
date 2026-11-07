@@ -2,7 +2,6 @@ import {
     FaReact,
     FaNodeJs,
     FaGithub,
-    FaDatabase,
     FaExternalLinkAlt,
     FaBrain,
 } from 'react-icons/fa'
@@ -13,7 +12,6 @@ import {
     SiSupabase,
     SiMongodb,
     SiExpress,
-    SiPostgresql,
     SiJavascript,
     SiPython,
     SiPytorch,

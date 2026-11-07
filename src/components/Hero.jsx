@@ -2,7 +2,7 @@ function Hero() {
     const technologies = ['React', 'Next.js', 'Node.js', 'Supabase']
 
     return (
-        <section className="relative min-h-screen overflow-hidden px-5 sm:px-8 lg:px-12 pt-28 pb-12">
+        <section id="home" className="relative min-h-svh overflow-hidden px-5 sm:px-8 lg:px-12 pt-28 pb-12">
 
             {/* Subtle grid */}
             <div
@@ -15,11 +15,18 @@ function Hero() {
             />
 
             {/* Ambient lights */}
-            <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-blue-600/15 blur-[140px] pointer-events-none" />
+            {/* Radial gradients instead of filter: blur() — same look, far cheaper on iOS Safari */}
+            <div
+                className="absolute -top-72 -left-72 w-[800px] h-[800px] pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 60%)' }}
+            />
 
-            <div className="absolute top-1/3 right-[-200px] w-[500px] h-[500px] rounded-full bg-violet-600/15 blur-[140px] pointer-events-none" />
+            <div
+                className="absolute top-1/4 right-[-350px] w-[800px] h-[800px] pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 60%)' }}
+            />
 
-            <div className="max-w-7xl mx-auto min-h-[calc(100vh-140px)] flex items-center relative z-10">
+            <div className="max-w-7xl mx-auto min-h-[calc(100svh-140px)] flex items-center relative z-10">
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
 
@@ -115,7 +122,10 @@ function Hero() {
                         <div className="relative w-full max-w-[480px]">
 
                             {/* Outer glow */}
-                            <div className="absolute -inset-8 bg-blue-500/10 blur-[90px] rounded-full" />
+                            <div
+                                className="absolute -inset-16 pointer-events-none"
+                                style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 65%)' }}
+                            />
 
                             {/* Decorative circle */}
                             <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full border border-blue-400/20" />
@@ -128,7 +138,13 @@ function Hero() {
                                 <div className="relative overflow-hidden rounded-[2rem] bg-[#0a0a0a]">
 
                                     <img
-                                        src="/images/faheem.png"
+                                        src="/images/faheem-960.webp"
+                                        srcSet="/images/faheem-480.webp 480w, /images/faheem-960.webp 960w"
+                                        sizes="(min-width: 1024px) 480px, (min-width: 520px) 480px, 100vw"
+                                        width="960"
+                                        height="960"
+                                        fetchPriority="high"
+                                        decoding="async"
                                         alt="Mohammad Faheem Mir"
                                         className="w-full aspect-[4/5] object-cover object-top"
                                     />

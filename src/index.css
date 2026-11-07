@@ -20,6 +20,13 @@
 html {
   scroll-behavior: smooth;
   background: #050505;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keep section headings clear of the fixed navbar when jumping via links */
+section[id] {
+  scroll-margin-top: 96px;
 }
 
 body {
@@ -62,11 +69,18 @@ button {
   cursor: pointer;
 }
 
+/* Solid tint first; a light backdrop blur only on larger screens (expensive on iOS) */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(16, 16, 20, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+}
+
+@media (min-width: 1024px) {
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 .gradient-text {
@@ -84,4 +98,18 @@ button {
   box-shadow:
     0 0 40px rgba(99, 102, 241, 0.15),
     0 0 80px rgba(59, 130, 246, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

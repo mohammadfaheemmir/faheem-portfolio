@@ -304,9 +304,9 @@ function Skills() {
 
                                             {/* Colored glow */}
                                             <div
-                                                className="absolute -right-10 -top-10 w-24 h-24 rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+                                                className="absolute -right-16 -top-16 w-40 h-40 opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none"
                                                 style={{
-                                                    backgroundColor: skill.color,
+                                                    background: `radial-gradient(circle, ${skill.color} 0%, transparent 65%)`,
                                                 }}
                                             />
 

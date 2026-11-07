@@ -52,7 +52,10 @@ function Contact() {
                     >
 
                         {/* Glow */}
-                        <div className="absolute -right-20 -top-20 w-56 h-56 rounded-full bg-blue-500/[0.06] blur-3xl pointer-events-none"></div>
+                        <div
+                            className="absolute -right-28 -top-28 w-72 h-72 pointer-events-none"
+                            style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 65%)' }}
+                        />
 
                         <div className="relative">
 

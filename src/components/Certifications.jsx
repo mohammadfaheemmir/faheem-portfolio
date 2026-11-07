@@ -113,9 +113,9 @@ function Certifications() {
 
                                 {/* Glow */}
                                 <div
-                                    className="absolute -right-20 -top-20 w-56 h-56 rounded-full blur-3xl opacity-10 pointer-events-none"
+                                    className="absolute -right-28 -top-28 w-72 h-72 opacity-10 pointer-events-none"
                                     style={{
-                                        backgroundColor: cert.iconColor,
+                                        background: `radial-gradient(circle, ${cert.iconColor} 0%, transparent 65%)`,
                                     }}
                                 />
 

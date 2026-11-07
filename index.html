@@ -2,9 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Mohammad Faheem Mir — Web Developer</title>
+    <meta name="description" content="Portfolio of Mohammad Faheem Mir, a web developer building responsive, full-stack web applications with React, Next.js, Node.js and Supabase." />
+    <meta name="author" content="Mohammad Faheem Mir" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mohammad Faheem Mir — Web Developer" />
+    <meta property="og:description" content="Responsive, full-stack web applications with clean interfaces and reliable functionality." />
+    <meta property="og:image" content="/images/faheem-960.webp" />
+    <meta name="twitter:card" content="summary" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>faheem-portfolio</title>
+    <link rel="apple-touch-icon" href="/images/faheem-480.webp" />
+
+    <!-- Start downloading the hero photo immediately, in parallel with the JS bundle -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/faheem-960.webp"
+      imagesrcset="/images/faheem-480.webp 480w, /images/faheem-960.webp 960w"
+      imagesizes="(min-width: 520px) 480px, 100vw"
+      fetchpriority="high"
+    />
+
+    <style>
+      /* Paint the dark background instantly so there's no white flash while JS loads */
+      html, body { background: #050505; margin: 0; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
