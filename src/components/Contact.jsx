@@ -1,209 +1,119 @@
-import {
-    FaGithub,
-    FaLinkedinIn,
-    FaEnvelope,
-} from 'react-icons/fa'
+import { useState } from 'react'
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaRegCopy, FaCheck, FaArrowRight } from 'react-icons/fa'
+import Section from './Section'
+import { contact } from '../data/site'
+
+const socials = [
+    { name: 'GitHub', note: 'See my code', href: contact.github, icon: FaGithub },
+    { name: 'LinkedIn', note: 'Connect with me', href: contact.linkedin, icon: FaLinkedinIn },
+]
 
 function Contact() {
+    const [copied, setCopied] = useState(false)
+
+    const copyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText(contact.email)
+            setCopied(true)
+            setTimeout(() => setCopied(false), 2000)
+        } catch {
+            window.location.href = `mailto:${contact.email}`
+        }
+    }
+
     return (
-        <section
-            id="contact"
-            className="relative px-5 sm:px-8 lg:px-12 py-28 lg:py-40"
-        >
-            <div className="max-w-7xl mx-auto">
+        <Section id="contact">
+            <div className="reveal relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+                <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                        background:
+                            'radial-gradient(60% 80% at 100% 0%, rgba(16,185,129,0.12) 0%, transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(59,130,246,0.10) 0%, transparent 60%)',
+                    }}
+                />
 
-                {/* Section label */}
-                <div className="flex items-center gap-4 mb-12">
-                    <span className="h-px w-10 bg-blue-400"></span>
+                <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-end">
+                    <div className="lg:col-span-7">
+                        <div className="flex items-center gap-3 mb-5">
+                            <span className="h-px w-8 bg-emerald-400" />
+                            <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-300/80">
+                                Contact
+                            </p>
+                        </div>
 
-                    <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                        Contact
-                    </p>
-                </div>
-
-                {/* Heading */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
-
-                    <div className="lg:col-span-8">
-                        <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-[-0.06em] leading-[0.9]">
-                            Let's build
-                            <span className="gradient-text block">
-                                something great.
-                            </span>
+                        <h2 className="text-[2.5rem] sm:text-6xl lg:text-7xl font-semibold tracking-[-0.04em] leading-[1.05] text-balance">
+                            Let's build <span className="gradient-text">something great.</span>
                         </h2>
-                    </div>
 
-                    <div className="lg:col-span-4 lg:pt-3">
-                        <p className="text-lg leading-8 text-slate-400">
-                            Have an opportunity, project, or idea you'd like
-                            to discuss? I'd be happy to connect.
+                        <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-400 max-w-lg">
+                            Have an opportunity, project or idea you'd like to
+                            discuss? I'm open to web development roles and
+                            would be happy to connect.
                         </p>
+
+                        <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                            <a
+                                href={`mailto:${contact.email}`}
+                                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-400 px-6 py-3.5 font-semibold text-black hover:bg-emerald-300 transition-colors"
+                            >
+                                <FaEnvelope size={14} aria-hidden="true" />
+                                Email me
+                                <FaArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+                            </a>
+
+                            <button
+                                type="button"
+                                onClick={copyEmail}
+                                className="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 font-medium text-slate-200 hover:bg-white/[0.08] transition-colors"
+                            >
+                                {copied ? (
+                                    <FaCheck size={13} className="text-emerald-300" aria-hidden="true" />
+                                ) : (
+                                    <FaRegCopy size={13} aria-hidden="true" />
+                                )}
+                                <span className="break-all">{copied ? 'Copied!' : contact.email}</span>
+                            </button>
+                        </div>
+                        <p className="sr-only" aria-live="polite">{copied ? 'Email address copied to clipboard' : ''}</p>
                     </div>
 
-                </div>
-
-                {/* Contact cards */}
-                <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-5">
-
-                    {/* Email card */}
-                    <a
-                        href="mailto:faheemmir129@gmail.com"
-                        className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 sm:p-9 hover:border-blue-400/30 hover:bg-white/[0.05] transition-all duration-300"
-                    >
-
-                        {/* Glow */}
-                        <div
-                            className="absolute -right-28 -top-28 w-72 h-72 pointer-events-none"
-                            style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 65%)' }}
-                        />
-
-                        <div className="relative">
-
-                            <div className="w-14 h-14 rounded-2xl border border-blue-400/20 bg-blue-400/[0.06] flex items-center justify-center">
-                                <FaEnvelope
-                                    size={22}
-                                    className="text-blue-400"
+                    <div className="lg:col-span-5 space-y-3">
+                        {socials.map(({ name, note, href, icon: Icon }) => (
+                            <a
+                                key={name}
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-black/30 p-4 hover:border-white/25 transition-colors"
+                            >
+                                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06] text-white">
+                                    <Icon size={18} aria-hidden="true" />
+                                </span>
+                                <span>
+                                    <span className="block text-sm font-semibold text-slate-100">{name}</span>
+                                    <span className="block text-xs text-slate-400">{note}</span>
+                                </span>
+                                <FaArrowRight
+                                    size={12}
+                                    className="ml-auto -rotate-45 text-slate-500 group-hover:text-white transition-colors"
+                                    aria-hidden="true"
                                 />
-                            </div>
-
-                            <p className="mt-8 text-xs uppercase tracking-[0.2em] text-slate-600">
-                                Email
-                            </p>
-
-                            <p className="mt-3 text-xl sm:text-2xl font-medium text-slate-200 break-all">
-                                faheemmir129@gmail.com
-                            </p>
-
-                            <p className="mt-6 text-sm text-slate-500 group-hover:text-blue-400 transition">
-                                Send me an email ↗
-                            </p>
-
-                        </div>
-
-                    </a>
-
-                    {/* Social card */}
-                    <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 sm:p-9">
-
-                        <p className="text-xs uppercase tracking-[0.2em] text-slate-600">
-                            Find me online
-                        </p>
-
-                        <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                            {/* GitHub */}
-                            <a
-                                href="https://github.com/mohammadfaheemmir"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 hover:bg-white/[0.06] hover:border-white/20 transition"
-                            >
-
-                                <div className="w-11 h-11 rounded-xl bg-white/[0.06] flex items-center justify-center">
-                                    <FaGithub
-                                        size={20}
-                                        className="text-white"
-                                    />
-                                </div>
-
-                                <div>
-                                    <p className="text-sm font-medium text-slate-200">
-                                        GitHub
-                                    </p>
-
-                                    <p className="text-xs text-slate-600 mt-1">
-                                        View my code
-                                    </p>
-                                </div>
-
-                                <span className="ml-auto text-slate-600 group-hover:text-white transition">
-                                    ↗
-                                </span>
-
                             </a>
+                        ))}
 
-                            {/* LinkedIn */}
-                            <a
-                                href="https://www.linkedin.com/in/mohammad-faheem-mir-b007802a7/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 hover:bg-white/[0.06] hover:border-white/20 transition"
-                            >
-
-                                <div className="w-11 h-11 rounded-xl bg-[#0A66C2]/10 flex items-center justify-center">
-                                    <FaLinkedinIn
-                                        size={20}
-                                        className="text-[#0A66C2]"
-                                    />
-                                </div>
-
-                                <div>
-                                    <p className="text-sm font-medium text-slate-200">
-                                        LinkedIn
-                                    </p>
-
-                                    <p className="text-xs text-slate-600 mt-1">
-                                        Connect with me
-                                    </p>
-                                </div>
-
-                                <span className="ml-auto text-slate-600 group-hover:text-white transition">
-                                    ↗
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                {/* Availability / Get in touch */}
-                <div className="mt-5 rounded-[2rem] border border-white/10 bg-gradient-to-r from-blue-500/[0.07] to-violet-500/[0.07] p-7 sm:p-9">
-
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-
-                        {/* Availability */}
-                        <div className="flex items-start gap-4">
-
-                            <span className="relative flex h-3 w-3 mt-1.5 shrink-0">
-
-                                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50"></span>
-
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
-
+                        <div className="flex items-center gap-3 rounded-2xl border border-emerald-400/15 bg-emerald-400/[0.05] p-4">
+                            <span className="relative flex h-2.5 w-2.5 shrink-0">
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
+                                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
                             </span>
-
-                            <div>
-
-                                <p className="text-sm font-medium text-slate-200">
-                                    Available for opportunities
-                                </p>
-
-                                <p className="mt-2 text-sm leading-6 text-slate-500">
-                                    Web Development · Software Development · AI-Assisted Development
-                                </p>
-
-                            </div>
-
+                            <p className="text-sm text-slate-300">
+                                Available for web, software &amp; AI-assisted development roles
+                            </p>
                         </div>
-
-                        {/* Get in touch */}
-                        <a
-                            href="mailto:faheemmir129@gmail.com"
-                            className="inline-flex items-center justify-center gap-3 rounded-full bg-emerald-400 px-7 py-4 text-sm font-semibold text-black shadow-[0_0_25px_rgba(52,211,153,0.15)] transition-all duration-300 hover:bg-emerald-300 hover:shadow-[0_0_35px_rgba(52,211,153,0.3)]"
-                        >
-                            Get in touch
-                            <span className="text-base">↗</span>
-                        </a>
-
                     </div>
-
                 </div>
-
             </div>
-        </section>
+        </Section>
     )
 }
 

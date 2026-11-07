@@ -9,12 +9,15 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+  font-feature-settings: "cv11", "ss01";
 
   color: #f8fafc;
   background: #050505;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -26,21 +29,16 @@ html {
 
 /* Keep section headings clear of the fixed navbar when jumping via links */
 section[id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 80px;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 15% 10%,
-      rgba(59, 130, 246, 0.12),
-      transparent 30%),
-    radial-gradient(circle at 85% 20%,
-      rgba(139, 92, 246, 0.12),
-      transparent 30%),
+    radial-gradient(circle at 15% 0%, rgba(16, 185, 129, 0.07), transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.08), transparent 35%),
     #050505;
-
   color: #f8fafc;
   overflow-x: hidden;
 }
@@ -50,8 +48,8 @@ body {
 }
 
 ::selection {
-  background: #6366f1;
-  color: white;
+  background: #10b981;
+  color: #04120c;
 }
 
 a {
@@ -69,6 +67,13 @@ button {
   cursor: pointer;
 }
 
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
 /* Solid tint first; a light backdrop blur only on larger screens (expensive on iOS) */
 .glass {
   background: rgba(16, 16, 20, 0.85);
@@ -77,32 +82,45 @@ button {
 
 @media (min-width: 1024px) {
   .glass {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(18, 18, 22, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 }
 
+/* Padding keeps descenders (g, y, p) from being clipped by background-clip: text */
 .gradient-text {
-  background: linear-gradient(90deg,
-      #ffffff 0%,
-      #93c5fd 45%,
-      #a78bfa 100%);
-
+  background: linear-gradient(90deg, #ffffff 0%, #a7f3d0 50%, #67e8f9 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  padding-bottom: 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.glow {
-  box-shadow:
-    0 0 40px rgba(99, 102, 241, 0.15),
-    0 0 80px rgba(59, 130, 246, 0.08);
+/* Scroll reveal — only hides content once JS confirms IntersectionObserver works */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .js-reveal .reveal {
+    opacity: 1;
+    transform: none;
   }
 
   *,

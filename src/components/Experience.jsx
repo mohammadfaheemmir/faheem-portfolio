@@ -1,140 +1,92 @@
+import { FaBriefcase, FaGraduationCap } from 'react-icons/fa'
+import Section from './Section'
+import SectionHeader from './SectionHeader'
+
+const timeline = [
+    {
+        kind: 'work',
+        period: '2026 — Present',
+        title: 'Web Developer',
+        organization: 'Independent & academic projects',
+        description:
+            'Building responsive, full-stack web applications with React, Next.js, Node.js, Express, MongoDB, Supabase and Tailwind CSS.',
+        points: [
+            'Built Digital Heroes, a Next.js + Supabase platform with authentication, subscriptions, scores, draws and an admin workflow.',
+            'Developed a MERN blogging platform with accounts, image posts, topics, search and post interactions.',
+            'Researched diabetic retinopathy classification with a Vision Transformer optimised by Harris Hawks Optimization (ViT-HHO).',
+        ],
+    },
+    {
+        kind: 'education',
+        period: '2024 — 2026',
+        title: 'Master of Computer Applications (MCA)',
+        organization: 'Postgraduate degree',
+        description:
+            'Focused on software development, web technologies, databases, artificial intelligence and network security, applied through academic and practical projects.',
+    },
+    {
+        kind: 'education',
+        period: '2021 — 2024',
+        title: 'Bachelor of Computer Applications (BCA)',
+        organization: 'Undergraduate degree',
+        description:
+            'Built a strong foundation in programming, web development, databases, data structures, computer networks and software engineering.',
+    },
+]
+
 function Experience() {
-    const experiences = [
-        {
-            period: '2026',
-            title: 'Web Developer — Fresher',
-            organization: 'Personal & Academic Projects',
-            description:
-                'A fresher focused on web development with practical experience building responsive and full-stack applications. I have worked with React, Next.js, JavaScript, Node.js, Express.js, MongoDB, Supabase, Tailwind CSS, and modern web technologies.',
-        },
-
-        {
-            period: '2026',
-            title: 'Digital Heroes',
-            organization: 'Full-Stack Web Application',
-            description:
-                'Built a full-stack web application using Next.js, Supabase, and Tailwind CSS. The project includes authentication, user profiles, subscriptions, scores, charity contributions, draws, winners, and an admin workflow. It gave me practical experience with databases, authentication, application workflows, responsive UI development, and full-stack development.',
-        },
-
-        {
-            period: '2026',
-            title: 'MERN Blogging App',
-            organization: 'Full-Stack Web Application',
-            description:
-                'Developed a blogging platform using the MERN stack where users can create accounts, publish posts with images and text, explore different topics, search content, and interact with posts. This project strengthened my skills in React, Node.js, Express.js, MongoDB, APIs, database operations, and responsive web development.',
-        },
-
-        {
-            period: '2026',
-            title: 'ViT-HHO',
-            organization: 'AI / Research Project',
-            description:
-                'Worked on a research project for diabetic retinopathy classification using a Vision Transformer optimized with Harris Hawks Optimization on the APTOS 2019 dataset. The project involved deep learning, image classification, model optimization, hyperparameter tuning, and performance evaluation.',
-        },
-
-        {
-            period: '2024 — 2026',
-            title: 'Master of Computer Applications (MCA)',
-            organization: 'Education',
-            description:
-                'Completed my MCA with a focus on software development, web technologies, databases, computer science fundamentals, artificial intelligence, and network security. During this period, I worked on academic and practical projects to strengthen my development skills.',
-        },
-
-        {
-            period: '2021 — 2024',
-            title: 'Bachelor of Computer Applications (BCA)',
-            organization: 'Education',
-            description:
-                'Completed my BCA and built a strong foundation in programming, web development, databases, data structures, computer networks, software engineering, and computer science fundamentals.',
-        },
-    ]
-
     return (
-        <section
-            id="experience"
-            className="px-6 md:px-12 py-32 border-t border-black"
-        >
-            <div className="max-w-7xl mx-auto">
+        <Section id="experience">
+            <SectionHeader
+                label="Experience"
+                title="My journey"
+                highlight="so far."
+                description="From full-stack applications to AI research — turning what I learn into practical, working software."
+            />
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <ol className="mt-12 lg:mt-16 relative border-l border-white/10 ml-5 sm:ml-6 space-y-6">
+                {timeline.map((item) => {
+                    const Icon = item.kind === 'work' ? FaBriefcase : FaGraduationCap
 
-                    {/* Section label */}
-                    <div className="md:col-span-3">
-                        <p className="text-sm uppercase tracking-[0.2em]">
-                            Experience
-                        </p>
+                    return (
+                        <li key={item.title} className="reveal relative pl-9 sm:pl-12">
+                            <span className="absolute -left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#0b0b0d] text-emerald-300">
+                                <Icon size={14} aria-hidden="true" />
+                            </span>
 
-                        <p className="mt-4 text-sm text-slate-500 leading-relaxed max-w-xs">
-                            My journey through education, projects, and practical
-                            experience as a web development fresher.
-                        </p>
-                    </div>
-
-                    {/* Main content */}
-                    <div className="md:col-span-9">
-
-                        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-                            My journey so far.
-                        </h2>
-
-                        <p className="mt-6 text-lg leading-relaxed text-slate-500 max-w-2xl">
-                            From building full-stack applications to working on
-                            AI research, I have focused on turning what I learn
-                            into practical projects and continuously improving
-                            my development skills.
-                        </p>
-
-                        <div className="mt-16">
-
-                            {experiences.map((experience) => (
-
-                                <article
-                                    key={`${experience.period}-${experience.title}`}
-                                    className="border-t border-black py-10 md:py-14"
-                                >
-
-                                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-
-                                        {/* Period */}
-                                        <div className="md:col-span-2">
-
-                                            <p className="text-sm uppercase tracking-[0.15em]">
-                                                {experience.period}
-                                            </p>
-
-                                        </div>
-
-                                        {/* Experience information */}
-                                        <div className="md:col-span-10">
-
-                                            <h3 className="text-3xl md:text-5xl font-bold tracking-tight">
-                                                {experience.title}
-                                            </h3>
-
-                                            <p className="mt-3 text-sm uppercase tracking-[0.15em] text-slate-500">
-                                                {experience.organization}
-                                            </p>
-
-                                            <p className="mt-6 text-lg leading-relaxed text-slate-600 max-w-3xl">
-                                                {experience.description}
-                                            </p>
-
-                                        </div>
-
+                            <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-7">
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-6">
+                                    <div>
+                                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="mt-1 text-sm text-slate-400">{item.organization}</p>
                                     </div>
+                                    <span className="shrink-0 self-start rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-300">
+                                        {item.period}
+                                    </span>
+                                </div>
 
-                                </article>
+                                <p className="mt-4 text-[15px] leading-relaxed text-slate-400 max-w-3xl">
+                                    {item.description}
+                                </p>
 
-                            ))}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
+                                {item.points && (
+                                    <ul className="mt-4 space-y-2.5 max-w-3xl">
+                                        {item.points.map((point) => (
+                                            <li key={point} className="flex gap-3 text-[15px] leading-relaxed text-slate-300">
+                                                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden="true" />
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                    )
+                })}
+            </ol>
+        </Section>
     )
 }
 

@@ -1,229 +1,114 @@
-import { FaBriefcase, FaGraduationCap } from 'react-icons/fa'
+import { FaBriefcase, FaExternalLinkAlt } from 'react-icons/fa'
 import { SiMeta } from 'react-icons/si'
+import Section from './Section'
+import SectionHeader from './SectionHeader'
+
+const certifications = [
+    {
+        title: 'Cyber Job Simulation',
+        issuer: 'Deloitte',
+        platform: 'Forage',
+        category: 'Cybersecurity',
+        date: 'Sep 2026',
+        description:
+            'Completed practical cybersecurity tasks as part of the Deloitte Cyber Job Simulation.',
+        icon: FaBriefcase,
+        iconColor: '#86BC25',
+    },
+    {
+        title: 'Tech Explorer Job Simulation',
+        issuer: 'Forage',
+        platform: 'Forage',
+        category: 'Technology',
+        date: 'Sep 2026',
+        description:
+            'Practical tasks covering software engineering, technology analysis, cybersecurity and data science.',
+        icon: FaBriefcase,
+        iconColor: '#A78BFA',
+    },
+    {
+        title: 'Introduction to Front-End Development',
+        issuer: 'Meta',
+        platform: 'Coursera',
+        category: 'Frontend',
+        date: 'Feb 2023',
+        description:
+            'Online non-credit course authorised by Meta and offered through Coursera.',
+        icon: SiMeta,
+        iconColor: '#3B9BFF',
+        verification: 'https://coursera.org/verify/AE82U9PD7P67',
+    },
+    {
+        title: 'Programming with JavaScript',
+        issuer: 'Meta',
+        platform: 'Coursera',
+        category: 'JavaScript',
+        date: 'Mar 2023',
+        description:
+            'Online non-credit course authorised by Meta and offered through Coursera.',
+        icon: SiMeta,
+        iconColor: '#3B9BFF',
+        verification: 'https://coursera.org/verify/P8XEBLSNFZ78',
+    },
+]
 
 function Certifications() {
-    const certifications = [
-        {
-            number: '01',
-            title: 'Cyber Job Simulation',
-            issuer: 'Deloitte',
-            platform: 'Forage',
-            category: 'Cybersecurity',
-            date: 'September 9, 2026',
-            description:
-                'Completed practical tasks in cybersecurity as part of the Deloitte Cyber Job Simulation.',
-            icon: FaBriefcase,
-            iconColor: '#86BC25',
-            verification: null,
-        },
-
-        {
-            number: '02',
-            title: 'Tech Explorer Job Simulation',
-            issuer: 'Forage',
-            platform: 'Forage',
-            category: 'Technology',
-            date: 'September 9, 2026',
-            description:
-                'Completed practical tasks covering software engineering, technology analysis, cybersecurity and data science.',
-            icon: FaBriefcase,
-            iconColor: '#7C3AED',
-            verification: null,
-        },
-
-        {
-            number: '03',
-            title: 'Introduction to Front-End Development',
-            issuer: 'Meta',
-            platform: 'Coursera',
-            category: 'Frontend Development',
-            date: 'February 9, 2023',
-            description:
-                'Completed an online non-credit course authorized by Meta and offered through Coursera.',
-            icon: SiMeta,
-            iconColor: '#0081FB',
-            verification:
-                'https://coursera.org/verify/AE82U9PD7P67',
-        },
-
-        {
-            number: '04',
-            title: 'Programming with JavaScript',
-            issuer: 'Meta',
-            platform: 'Coursera',
-            category: 'JavaScript',
-            date: 'March 25, 2023',
-            description:
-                'Completed an online non-credit course authorized by Meta and offered through Coursera.',
-            icon: SiMeta,
-            iconColor: '#0081FB',
-            verification:
-                'https://coursera.org/verify/P8XEBLSNFZ78',
-        },
-    ]
-
     return (
-        <section
-            id="certifications"
-            className="relative px-5 sm:px-8 lg:px-12 py-28 lg:py-40"
-        >
-            <div className="max-w-7xl mx-auto">
+        <Section id="certifications">
+            <SectionHeader
+                label="Certifications"
+                title="Credentials"
+                highlight="I've earned."
+                description="Professional courses and practical job simulations that complement my hands-on project work."
+            />
 
-                {/* Section label */}
-                <div className="flex items-center gap-4 mb-12">
-                    <span className="h-px w-10 bg-emerald-400"></span>
+            <div className="mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {certifications.map((cert) => {
+                    const IssuerIcon = cert.icon
 
-                    <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                        Certifications
-                    </p>
-                </div>
-
-                {/* Heading */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
-
-                    <div className="lg:col-span-7">
-                        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.05em] leading-[0.95]">
-                            Credentials
-                            <span className="gradient-text">
-                                {' '}I've earned.
-                            </span>
-                        </h2>
-                    </div>
-
-                    <div className="lg:col-span-5 lg:pt-3">
-                        <p className="text-lg leading-8 text-slate-400">
-                            Professional certifications and practical learning
-                            experiences that complement my technical skills.
-                        </p>
-                    </div>
-
-                </div>
-
-                {/* Certification cards */}
-                <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-5">
-
-                    {certifications.map((cert) => {
-                        const IssuerIcon = cert.icon
-
-                        return (
-                            <article
-                                key={cert.number}
-                                className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 sm:p-8 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-300"
-                            >
-
-                                {/* Glow */}
-                                <div
-                                    className="absolute -right-28 -top-28 w-72 h-72 opacity-10 pointer-events-none"
-                                    style={{
-                                        background: `radial-gradient(circle, ${cert.iconColor} 0%, transparent 65%)`,
-                                    }}
-                                />
-
-                                <div className="relative">
-
-                                    {/* Top row */}
-                                    <div className="flex items-center justify-between">
-
-                                        <span className="text-xs text-slate-600">
-                                            {cert.number}
-                                        </span>
-
-                                        <span className="px-3 py-1.5 rounded-full border border-white/10 bg-black/20 text-[10px] uppercase tracking-[0.15em] text-slate-500">
-                                            {cert.category}
-                                        </span>
-
+                    return (
+                        <article
+                            key={cert.title}
+                            className="reveal flex flex-col rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-7 hover:border-white/20 transition-colors"
+                        >
+                            <div className="flex items-start justify-between gap-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40">
+                                        <IssuerIcon size={20} color={cert.iconColor} aria-hidden="true" />
                                     </div>
-
-                                    {/* Issuer branding */}
-                                    <div className="mt-7 flex items-center gap-4">
-
-                                        <div
-                                            className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 bg-black/30"
-                                        >
-                                            <IssuerIcon
-                                                size={30}
-                                                color={cert.iconColor}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <p className="text-sm font-medium text-slate-200">
-                                                {cert.issuer}
-                                            </p>
-
-                                            <p className="text-xs text-slate-500 mt-1">
-                                                Issued / provided through {cert.platform}
-                                            </p>
-                                        </div>
-
+                                    <div>
+                                        <p className="text-sm font-semibold text-slate-100">{cert.issuer}</p>
+                                        <p className="text-xs text-slate-400">
+                                            via {cert.platform} · {cert.date}
+                                        </p>
                                     </div>
-
-                                    {/* Title */}
-                                    <h3 className="mt-7 text-2xl sm:text-3xl font-semibold tracking-tight">
-                                        {cert.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="mt-4 text-sm leading-7 text-slate-500">
-                                        {cert.description}
-                                    </p>
-
-                                    {/* Divider */}
-                                    <div className="my-7 h-px bg-white/10"></div>
-
-                                    {/* Bottom */}
-                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-[0.15em] text-slate-600">
-                                                Completed
-                                            </p>
-
-                                            <p className="mt-1 text-sm text-slate-400">
-                                                {cert.date}
-                                            </p>
-                                        </div>
-
-                                        {cert.verification ? (
-                                            <a
-                                                href={cert.verification}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-white/10 bg-white/[0.04] text-sm text-slate-300 hover:bg-white/[0.08] hover:text-white transition"
-                                            >
-                                                Verify Certificate
-                                                <span>↗</span>
-                                            </a>
-                                        ) : (
-                                            <span className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-white/10 bg-white/[0.02] text-sm text-slate-500">
-                                                <FaGraduationCap size={14} />
-                                                Certificate
-                                            </span>
-                                        )}
-
-                                    </div>
-
                                 </div>
 
-                            </article>
-                        )
-                    })}
+                                <span className="hidden sm:inline-block shrink-0 rounded-full border border-white/10 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-slate-400">
+                                    {cert.category}
+                                </span>
+                            </div>
 
-                </div>
+                            <h3 className="mt-5 text-xl font-semibold tracking-tight">{cert.title}</h3>
+                            <p className="mt-2 text-[15px] leading-relaxed text-slate-400">{cert.description}</p>
 
-                {/* Bottom note */}
-                <div className="mt-5 rounded-[2rem] border border-white/10 bg-gradient-to-r from-emerald-500/[0.06] to-blue-500/[0.06] p-7 sm:p-9">
-
-                    <p className="text-slate-400 leading-7">
-                        Continuously learning through professional courses,
-                        practical job simulations, research and hands-on
-                        development projects.
-                    </p>
-
-                </div>
-
+                            {cert.verification && (
+                                <a
+                                    href={cert.verification}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-5 inline-flex items-center gap-2 self-start text-sm font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
+                                >
+                                    Verify credential
+                                    <FaExternalLinkAlt size={10} aria-hidden="true" />
+                                    <span className="sr-only">for {cert.title} (opens in new tab)</span>
+                                </a>
+                            )}
+                        </article>
+                    )
+                })}
             </div>
-        </section>
+        </Section>
     )
 }
 

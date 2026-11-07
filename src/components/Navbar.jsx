@@ -1,224 +1,183 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { navLinks } from '../data/site'
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
+    const [active, setActive] = useState('home')
+    const [scrolled, setScrolled] = useState(false)
 
-    const closeMenu = () => {
-        setMenuOpen(false)
-    }
+    const closeMenu = () => setMenuOpen(false)
 
-    const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Certifications', href: '#certifications' },
-        { name: 'Contact', href: '#contact' },
-    ]
+    // Highlight the section currently in the middle of the screen
+    useEffect(() => {
+        const sections = navLinks
+            .map((link) => document.querySelector(link.href))
+            .filter(Boolean)
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) setActive(entry.target.id)
+                })
+            },
+            { rootMargin: '-45% 0px -50% 0px' },
+        )
+
+        sections.forEach((section) => observer.observe(section))
+
+        return () => observer.disconnect()
+    }, [])
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 12)
+        onScroll()
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
+
+    // Escape closes the menu; lock page scroll while it is open
+    useEffect(() => {
+        if (!menuOpen) return
+
+        const onKey = (event) => {
+            if (event.key === 'Escape') setMenuOpen(false)
+        }
+
+        const previousOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+        document.addEventListener('keydown', onKey)
+
+        return () => {
+            document.body.style.overflow = previousOverflow
+            document.removeEventListener('keydown', onKey)
+        }
+    }, [menuOpen])
 
     return (
-        <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 pt-4">
+        <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
+            <nav className="max-w-7xl mx-auto" aria-label="Main">
 
-            <nav className="max-w-7xl mx-auto">
-
-                {/* =========================
-            MAIN NAVBAR
-        ========================== */}
-                <div className="relative bg-[#0b0b0d]/95 border border-white/10 rounded-full px-4 sm:px-5 md:px-7 py-3 flex items-center justify-between shadow-2xl shadow-black/30">
+                <div
+                    className={`relative border rounded-full pl-5 pr-2 sm:pl-6 py-2 flex items-center justify-between transition-all duration-300 ${scrolled || menuOpen
+                        ? 'bg-[#0b0b0d]/95 border-white/10 shadow-xl shadow-black/40'
+                        : 'bg-[#0b0b0d]/70 border-white/[0.06]'
+                        }`}
+                >
 
                     {/* Logo */}
                     <a
                         href="#home"
                         onClick={closeMenu}
-                        className="group text-lg md:text-xl font-bold tracking-tight text-white"
+                        className="text-lg font-bold tracking-tight text-white"
+                        aria-label="Faheem — back to top"
                     >
-                        Faheem
-                        <span className="text-emerald-400 group-hover:text-blue-400 transition-colors duration-300">
-                            .
-                        </span>
+                        Faheem<span className="text-emerald-400">.</span>
                     </a>
 
-                    {/* =========================
-              DESKTOP NAVIGATION
-          ========================== */}
-                    <div className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm">
+                    {/* Desktop links */}
+                    <ul className="hidden lg:flex items-center gap-1 text-sm">
+                        {navLinks.map((link) => {
+                            const isActive = active === link.href.slice(1)
 
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className="relative text-slate-400 hover:text-white transition-colors duration-200 group"
-                            >
-                                {link.name}
+                            return (
+                                <li key={link.name}>
+                                    <a
+                                        href={link.href}
+                                        aria-current={isActive ? 'true' : undefined}
+                                        className={`rounded-full px-3.5 py-2 transition-colors duration-200 ${isActive
+                                            ? 'text-white bg-white/[0.07]'
+                                            : 'text-slate-400 hover:text-white'
+                                            }`}
+                                    >
+                                        {link.name}
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
 
-                                <span className="absolute left-0 -bottom-1 h-px w-0 bg-emerald-400 group-hover:w-full transition-all duration-300" />
-                            </a>
-                        ))}
-
-                    </div>
-
-                    {/* =========================
-              DESKTOP LET'S TALK
-          ========================== */}
+                    {/* Desktop CTA */}
                     <a
                         href="#contact"
-                        className="hidden lg:inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-5 py-2.5 text-sm font-medium text-emerald-300 hover:bg-emerald-400 hover:text-black hover:border-emerald-400 transition-all duration-300"
+                        className="hidden lg:inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-2.5 text-sm font-semibold text-black hover:bg-emerald-300 transition-colors"
                     >
-                        Let's Talk
-                        <span className="text-xs">↗</span>
+                        Let's talk
                     </a>
 
-                    {/* =========================
-              MOBILE MENU BUTTON
-          ========================== */}
+                    {/* Mobile menu button */}
                     <button
                         type="button"
                         onClick={() => setMenuOpen((prev) => !prev)}
-                        aria-label={
-                            menuOpen
-                                ? 'Close navigation menu'
-                                : 'Open navigation menu'
-                        }
+                        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                         aria-expanded={menuOpen}
-                        className="lg:hidden relative w-11 h-11 rounded-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300"
+                        aria-controls="mobile-menu"
+                        className="lg:hidden relative w-11 h-11 rounded-full border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-colors"
                     >
-
-                        {/* Top line */}
                         <span
-                            className={`absolute left-3.5 top-[15px] w-4 h-[1.5px] bg-slate-300 transition-all duration-300 ${menuOpen
-                                    ? 'rotate-45 translate-y-[5px]'
-                                    : ''
-                                }`}
+                            className={`absolute left-3.5 top-[15px] w-4 h-[1.5px] bg-slate-200 transition-all duration-300 ${menuOpen ? 'translate-y-[6px] rotate-45' : ''}`}
                         />
-
-                        {/* Middle line */}
                         <span
-                            className={`absolute left-3.5 top-[21px] w-4 h-[1.5px] bg-slate-300 transition-all duration-300 ${menuOpen
-                                    ? 'opacity-0'
-                                    : 'opacity-100'
-                                }`}
+                            className={`absolute left-3.5 top-[21px] w-4 h-[1.5px] bg-slate-200 transition-all duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`}
                         />
-
-                        {/* Bottom line */}
                         <span
-                            className={`absolute left-3.5 top-[27px] w-4 h-[1.5px] bg-slate-300 transition-all duration-300 ${menuOpen
-                                    ? '-rotate-45 -translate-y-[1px]'
-                                    : ''
-                                }`}
+                            className={`absolute left-3.5 top-[27px] w-4 h-[1.5px] bg-slate-200 transition-all duration-300 ${menuOpen ? '-translate-y-[6px] -rotate-45' : ''}`}
                         />
-
                     </button>
-
                 </div>
 
-                {/* =========================
-            MOBILE BACKDROP
-        ========================== */}
+                {/* Mobile backdrop */}
                 <div
                     onClick={closeMenu}
-                    className={`fixed inset-0 top-[88px] bg-black/60 transition-opacity duration-300 lg:hidden ${menuOpen
-                            ? 'opacity-100 pointer-events-auto'
-                            : 'opacity-0 pointer-events-none'
-                        }`}
+                    aria-hidden="true"
+                    className={`fixed inset-0 -z-10 bg-black/70 transition-opacity duration-300 lg:hidden ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 />
 
-                {/* =========================
-            MOBILE MENU
-        ========================== */}
+                {/* Mobile menu */}
                 <div
-                    className={`relative lg:hidden mt-3 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0d] shadow-2xl shadow-black/50 transition-all duration-300 ease-out ${menuOpen
-                            ? 'max-h-[700px] opacity-100 translate-y-0'
-                            : 'max-h-0 opacity-0 -translate-y-3 pointer-events-none'
+                    id="mobile-menu"
+                    className={`lg:hidden mt-2 overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b0d] shadow-2xl shadow-black/50 transition-all duration-300 ease-out ${menuOpen
+                        ? 'max-h-[620px] opacity-100 translate-y-0'
+                        : 'max-h-0 opacity-0 -translate-y-2 pointer-events-none border-transparent'
                         }`}
                 >
+                    <ul className="p-3">
+                        {navLinks.map((link) => {
+                            const isActive = active === link.href.slice(1)
 
-                    <div className="p-4 sm:p-5">
+                            return (
+                                <li key={link.name}>
+                                    <a
+                                        href={link.href}
+                                        onClick={closeMenu}
+                                        tabIndex={menuOpen ? 0 : -1}
+                                        className={`flex items-center justify-between rounded-2xl px-4 py-3.5 text-[15px] font-medium transition-colors ${isActive
+                                            ? 'bg-white/[0.06] text-white'
+                                            : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                                            }`}
+                                    >
+                                        {link.name}
+                                        {isActive && (
+                                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                        )}
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
 
-                        {/* Menu heading */}
-                        <div className="px-3 pt-2 pb-4 flex items-center justify-between">
-
-                            <div>
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-slate-600">
-                                    Navigation
-                                </p>
-
-                                <p className="mt-1 text-sm text-slate-400">
-                                    Explore my portfolio
-                                </p>
-                            </div>
-
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)]" />
-
-                        </div>
-
-                        {/* Mobile links */}
-                        <div className="space-y-1">
-
-                            {navLinks.map((link, index) => (
-                                <a
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={closeMenu}
-                                    style={{
-                                        transitionDelay: menuOpen
-                                            ? `${index * 35}ms`
-                                            : '0ms',
-                                    }}
-                                    className={`group flex items-center justify-between px-4 py-3.5 rounded-2xl text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all duration-300 ${menuOpen
-                                            ? 'translate-x-0 opacity-100'
-                                            : 'translate-x-3 opacity-0'
-                                        }`}
-                                >
-
-                                    <div className="flex items-center gap-4">
-
-                                        <span className="text-[10px] text-slate-700 group-hover:text-emerald-400 transition-colors">
-                                            {String(index + 1).padStart(2, '0')}
-                                        </span>
-
-                                        <span className="text-[15px] font-medium">
-                                            {link.name}
-                                        </span>
-
-                                    </div>
-
-                                    <span className="text-slate-700 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all duration-200">
-                                        ↗
-                                    </span>
-
-                                </a>
-                            ))}
-
-                        </div>
-
-                        {/* =========================
-                MOBILE LET'S TALK
-            ========================== */}
-                        <div
-                            className={`mt-4 pt-4 border-t border-white/10 transition-all duration-300 ${menuOpen
-                                    ? 'opacity-100 translate-y-0'
-                                    : 'opacity-0 translate-y-2'
-                                }`}
+                    <div className="px-3 pb-3">
+                        <a
+                            href="#contact"
+                            onClick={closeMenu}
+                            tabIndex={menuOpen ? 0 : -1}
+                            className="flex items-center justify-center w-full rounded-full bg-emerald-400 py-3.5 text-sm font-semibold text-black hover:bg-emerald-300 transition-colors"
                         >
-
-                            <a
-                                href="#contact"
-                                onClick={closeMenu}
-                                className="flex items-center justify-center gap-2 w-full rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 py-3.5 text-sm font-medium hover:bg-emerald-400 hover:text-black hover:border-emerald-400 transition-all duration-300"
-                            >
-                                Let's Talk
-                                <span>↗</span>
-                            </a>
-
-                        </div>
-
+                            Let's talk
+                        </a>
                     </div>
-
                 </div>
 
             </nav>
-
         </header>
     )
 }
